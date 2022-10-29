@@ -3,7 +3,6 @@ package com.badarak;
 public class Account {
 
     private double balance;
-    private final double OVERDRAFT_LIMIT = 500;
 
     public Account() {
     }
