@@ -17,7 +17,11 @@ public class Account {
 
     public Account deposit(Amount amount) {
         Amount newBalance = balance.add(amount);
-        Statement newStatement = this.statement.addNewTransaction(new Transaction(LocalDateTime.now(), TransactionType.DEPOSIT, amount, newBalance));
+        return treatOperation(TransactionType.DEPOSIT, amount, newBalance);
+    }
+
+    private Account treatOperation(TransactionType type, Amount amount, Amount newBalance) {
+        Statement newStatement = this.statement.addNewTransaction(new Transaction(LocalDateTime.now(), type, amount, newBalance));
         return new Account(accountId, newBalance, newStatement);
     }
 
@@ -27,8 +31,7 @@ public class Account {
         }
 
         Amount newBalance = balance.minus(amount);
-        Statement newStatement = this.statement.addNewTransaction(new Transaction(LocalDateTime.now(), TransactionType.WITHDRAWAL, amount, newBalance));
-        return new Account(accountId, newBalance, newStatement);
+        return treatOperation(TransactionType.WITHDRAWAL, amount, newBalance);
     }
 
     public Amount getBalance() {
