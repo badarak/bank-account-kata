@@ -1,11 +1,11 @@
 package com.badarak.bankaccountkata.features;
 
 import com.badarak.bankaccountkata.adapter.InMemoryAccountRepositoryAdapter;
-import com.badarak.bankaccountkata.domain.Account;
-import com.badarak.bankaccountkata.domain.AccountNumber;
-import com.badarak.bankaccountkata.domain.Amount;
-import com.badarak.bankaccountkata.domain.Statement;
-import com.badarak.bankaccountkata.domain.exception.UnknownAccountException;
+import com.badarak.bankaccountkata.business.Account;
+import com.badarak.bankaccountkata.business.AccountNumber;
+import com.badarak.bankaccountkata.business.Amount;
+import com.badarak.bankaccountkata.business.Statement;
+import com.badarak.bankaccountkata.exception.UnknownAccountException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

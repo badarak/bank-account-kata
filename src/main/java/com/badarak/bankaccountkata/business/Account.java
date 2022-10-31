@@ -1,6 +1,6 @@
-package com.badarak.bankaccountkata.domain;
+package com.badarak.bankaccountkata.business;
 
-import com.badarak.bankaccountkata.domain.exception.UnsufficientBalanceException;
+import com.badarak.bankaccountkata.exception.UnsufficientBalanceException;
 
 import java.time.LocalDateTime;
 

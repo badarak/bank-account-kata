@@ -1,4 +1,4 @@
-package com.badarak.bankaccountkata.domain;
+package com.badarak.bankaccountkata.business;
 
 public enum TransactionType {
     DEPOSIT,

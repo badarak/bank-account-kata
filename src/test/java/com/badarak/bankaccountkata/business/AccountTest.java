@@ -1,12 +1,12 @@
-package com.badarak.bankaccountkata.domain;
+package com.badarak.bankaccountkata.business;
 
-import com.badarak.bankaccountkata.domain.exception.UnsufficientBalanceException;
+import com.badarak.bankaccountkata.exception.UnsufficientBalanceException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static com.badarak.bankaccountkata.domain.Amount.amountOf;
+import static com.badarak.bankaccountkata.business.Amount.amountOf;
 import static java.math.BigDecimal.valueOf;
 import static org.junit.jupiter.api.Assertions.*;
 

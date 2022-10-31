@@ -1,8 +1,8 @@
 package com.badarak.bankaccountkata.features;
 
-import com.badarak.bankaccountkata.domain.Account;
-import com.badarak.bankaccountkata.domain.Amount;
-import com.badarak.bankaccountkata.domain.repository.AccountRepository;
+import com.badarak.bankaccountkata.business.Account;
+import com.badarak.bankaccountkata.business.Amount;
+import com.badarak.bankaccountkata.repository.AccountRepository;
 
 import java.math.BigDecimal;
 

@@ -1,6 +1,6 @@
-package com.badarak.bankaccountkata.domain.repository;
+package com.badarak.bankaccountkata.repository;
 
-import com.badarak.bankaccountkata.domain.Account;
+import com.badarak.bankaccountkata.business.Account;
 
 public interface AccountRepository {
     Account findAccountByIban(String iban);

@@ -1,8 +1,8 @@
 package com.badarak.bankaccountkata.adapter;
 
 
-import com.badarak.bankaccountkata.domain.Statement;
-import com.badarak.bankaccountkata.domain.service.StatementPrinterService;
+import com.badarak.bankaccountkata.business.Statement;
+import com.badarak.bankaccountkata.business.StatementPrinterService;
 
 public class ConsolePrinterServiceAdapter implements StatementPrinterService {
 

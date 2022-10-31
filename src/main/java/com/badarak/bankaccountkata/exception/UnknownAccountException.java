@@ -1,4 +1,4 @@
-package com.badarak.bankaccountkata.domain.exception;
+package com.badarak.bankaccountkata.exception;
 
 public class UnknownAccountException extends RuntimeException{
 

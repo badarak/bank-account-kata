@@ -1,12 +1,12 @@
-package com.badarak.bankaccountkata.domain;
+package com.badarak.bankaccountkata.business;
 
 import java.time.LocalDateTime;
 
 public class Transaction {
-    private LocalDateTime date;
-    private Amount amount;
-    private Amount newBalance;
-    private TransactionType type;
+    private final LocalDateTime date;
+    private final Amount amount;
+    private final Amount newBalance;
+    private final TransactionType type;
 
     public Transaction(LocalDateTime date, TransactionType type, Amount amount, Amount newBalance) {
         this.date = date;

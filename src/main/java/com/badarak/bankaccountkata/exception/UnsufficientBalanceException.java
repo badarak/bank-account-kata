@@ -1,4 +1,4 @@
-package com.badarak.bankaccountkata.domain.exception;
+package com.badarak.bankaccountkata.exception;
 
 public class UnsufficientBalanceException extends IllegalStateException{
     public UnsufficientBalanceException(String message){

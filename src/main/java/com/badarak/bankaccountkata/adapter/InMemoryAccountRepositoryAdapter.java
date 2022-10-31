@@ -1,9 +1,9 @@
 package com.badarak.bankaccountkata.adapter;
 
-import com.badarak.bankaccountkata.domain.Account;
-import com.badarak.bankaccountkata.domain.AccountNumber;
-import com.badarak.bankaccountkata.domain.repository.AccountRepository;
-import com.badarak.bankaccountkata.domain.exception.UnknownAccountException;
+import com.badarak.bankaccountkata.business.Account;
+import com.badarak.bankaccountkata.business.AccountNumber;
+import com.badarak.bankaccountkata.repository.AccountRepository;
+import com.badarak.bankaccountkata.exception.UnknownAccountException;
 
 import java.util.HashMap;
 import java.util.Map;

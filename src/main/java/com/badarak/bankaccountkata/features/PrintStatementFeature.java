@@ -1,8 +1,8 @@
 package com.badarak.bankaccountkata.features;
 
-import com.badarak.bankaccountkata.domain.Account;
-import com.badarak.bankaccountkata.domain.repository.AccountRepository;
-import com.badarak.bankaccountkata.domain.service.StatementPrinterService;
+import com.badarak.bankaccountkata.business.Account;
+import com.badarak.bankaccountkata.repository.AccountRepository;
+import com.badarak.bankaccountkata.business.StatementPrinterService;
 
 public class PrintStatementFeature {
     private final AccountRepository accountRepository;
