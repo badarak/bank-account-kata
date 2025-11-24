@@ -5,6 +5,7 @@ import com.badarak.bankaccountkata.business.Amount;
 import com.badarak.bankaccountkata.repository.AccountRepository;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 public class AccountOperationFeature {
     private final AccountRepository accountRepository;
@@ -15,11 +16,11 @@ public class AccountOperationFeature {
 
     public Account deposit(String iban, BigDecimal amount){
         Account account = accountRepository.findAccountByIban(iban);
-        return  accountRepository.save(account.deposit(Amount.amountOf(amount)));
+        return  accountRepository.save(account.deposit(Amount.amountOf(amount), LocalDateTime.now()));
     }
 
     public Account withdraw(String iban, BigDecimal amount){
         Account account = accountRepository.findAccountByIban(iban);
-        return  accountRepository.save(account.withdraw(Amount.amountOf(amount)));
+        return  accountRepository.save(account.withdraw(Amount.amountOf(amount), LocalDateTime.now()));
     }
 }

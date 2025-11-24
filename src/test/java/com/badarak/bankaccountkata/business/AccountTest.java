@@ -6,12 +6,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import java.time.LocalDateTime;
+
 import static com.badarak.bankaccountkata.business.Amount.amountOf;
 import static java.math.BigDecimal.valueOf;
 import static org.junit.jupiter.api.Assertions.*;
 
 
-public class AccountTest {
+class AccountTest {
     private Account account;
 
     @BeforeEach
@@ -22,41 +24,46 @@ public class AccountTest {
     }
 
     @Test
-    public void shouldReturnTwoHundredAfterDeposit(){
-        Account accountAfterDeposit = account.deposit(amountOf(valueOf(100)));
+    void shouldReturnTwoHundredAfterDeposit(){
+        Account accountAfterDeposit = account.deposit(amountOf(valueOf(100)), LocalDateTime.now());
         assertEquals( valueOf(200), accountAfterDeposit.getBalance().getValue());
     }
 
     @Test
-    public void shouldReturnZeroAfterWithdrawalOfRemainingHundred(){
-        Account accountAfterWithDrawal = account.withdraw(amountOf(valueOf(100)));
+    void shouldReturnZeroAfterWithdrawalOfRemainingHundred(){
+        Account accountAfterWithDrawal = account.withdraw(amountOf(valueOf(100)), LocalDateTime.now());
         assertEquals(valueOf(0), accountAfterWithDrawal.getBalance().getValue());
     }
 
     @Test
-    public void shouldThrowUnsufficientBalanceExceptionWhenWithrawalResultingInOverdraft(){
-        assertThrows(UnsufficientBalanceException.class, () -> account.withdraw(amountOf(valueOf(1000))));
+    void shouldThrowUnsufficientBalanceExceptionWhenWithrawalResultingInOverdraft(){
+        LocalDateTime now = LocalDateTime.now();
+        Amount amount = amountOf(valueOf(1000));
+        assertThrows(UnsufficientBalanceException.class, () -> account.withdraw(amount, now));
     }
 
     @ParameterizedTest
     @ValueSource(strings = {"Insufficient balance for this withdrawal."})
-    public void shouldThrowUnsufficientBalanceExceptionWhenWithrawalResultingInOverdraft(String msg){
+    void shouldThrowUnsufficientBalanceExceptionWhenWithrawalResultingInOverdraft(String msg){
+        LocalDateTime now = LocalDateTime.now();
+        Amount amount = amountOf(valueOf(500));
         UnsufficientBalanceException thrown = assertThrows(UnsufficientBalanceException.class,
-                () -> account.withdraw(amountOf(valueOf(500))));
+                () -> account.withdraw(amount, now));
         assertEquals(msg, thrown.getMessage());
     }
 
     @Test
-    public void shouldReturnAHundredAfterDepositAndWithrdrawalOfAHundred(){
-        Account accountAfterOperation = account.deposit(amountOf(valueOf(100)))
-                .withdraw(amountOf(valueOf(100)));
+    void shouldReturnAHundredAfterDepositAndWithrdrawalOfAHundred(){
+        Account accountAfterOperation = account.deposit(amountOf(valueOf(100)), LocalDateTime.now())
+                .withdraw(amountOf(valueOf(100)), LocalDateTime.now());
 
         assertEquals(valueOf(100),accountAfterOperation.getBalance().getValue());
     }
 
     @Test
-    public void shouldAddANewTransactionToStatementWhenWithDrawal() {
-        Account accountAfterWithDrawal = account.withdraw(amountOf(valueOf(100)));
+    void shouldAddANewTransactionToStatementWhenWithDrawal() {
+        LocalDateTime date = LocalDateTime.of(2020, 5, 24, 14, 0);
+        Account accountAfterWithDrawal = account.withdraw(amountOf(valueOf(100)), date);
 
         assertTrue(accountAfterWithDrawal.getStatement().getLastTransaction().isPresent());
         assertEquals(accountAfterWithDrawal.getBalance(),
@@ -65,11 +72,14 @@ public class AccountTest {
                 accountAfterWithDrawal.getStatement().getLastTransaction().map(Transaction::getType).get());
         assertEquals(amountOf(valueOf(100)),
                 accountAfterWithDrawal.getStatement().getLastTransaction().map(Transaction::getAmount).get());
+        assertEquals(date,
+                accountAfterWithDrawal.getStatement().getLastTransaction().map(Transaction::getDate).get());
     }
 
     @Test
-    public void shouldAddANewTransactionToStatementWhenDeposit() {
-        Account accountAfterWithDeposit = account.deposit(amountOf(valueOf(100)));
+    void shouldAddANewTransactionToStatementWhenDeposit() {
+        LocalDateTime date = LocalDateTime.of(2022, 11, 6, 12,5);
+        Account accountAfterWithDeposit = account.deposit(amountOf(valueOf(100)), date);
 
         assertTrue(accountAfterWithDeposit.getStatement().getLastTransaction().isPresent());
         assertEquals(accountAfterWithDeposit.getBalance(),
@@ -78,5 +88,9 @@ public class AccountTest {
                 accountAfterWithDeposit.getStatement().getLastTransaction().map(Transaction::getType).get());
         assertEquals(amountOf(valueOf(100)),
                 accountAfterWithDeposit.getStatement().getLastTransaction().map(Transaction::getAmount).get());
+
+        assertEquals(date,
+                accountAfterWithDeposit.getStatement().getLastTransaction().map(Transaction::getDate).get());
     }
+
 }

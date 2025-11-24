@@ -10,9 +10,11 @@ import com.badarak.bankaccountkata.repository.AccountRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.time.LocalDateTime;
+
 import static java.math.BigDecimal.valueOf;
 
-public class PrintStatementFeatureTest {
+class PrintStatementFeatureTest {
     public static final String IBAN = "FR1234567891011213";
     public static final int INITIAL_BALANCE_AMOUNT = 100;
     private PrintStatementFeature printStatementFeature;
@@ -32,14 +34,15 @@ public class PrintStatementFeatureTest {
 
     @Test
     void printStatement() {
-        Account accountToPrint = account.deposit(Amount.amountOf(valueOf(100)))
-                .withdraw(Amount.amountOf(valueOf(200)))
-                .deposit(Amount.amountOf(valueOf(300)))
-                .withdraw(Amount.amountOf(valueOf(100)))
-                .deposit(Amount.amountOf(valueOf(100)));
+        Account accountToPrint = account.deposit(Amount.amountOf(valueOf(100)), LocalDateTime.now())
+                .withdraw(Amount.amountOf(valueOf(200)), LocalDateTime.now())
+                .deposit(Amount.amountOf(valueOf(300)), LocalDateTime.now())
+                .withdraw(Amount.amountOf(valueOf(100)), LocalDateTime.now())
+                .deposit(Amount.amountOf(valueOf(100)), LocalDateTime.now());
 
         accountRepository.save(accountToPrint);
 
         printStatementFeature.printStatement(IBAN);
+        Statement statement = accountToPrint.getStatement();
     }
 }
