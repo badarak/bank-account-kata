@@ -1,0 +1,11 @@
+<project>
+    <parent>
+        <groupId>com.badarak</groupId>
+        <artifactId>bank-account-kata</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>domain</artifactId>
+    <packaging>jar</packaging>
+</project>

@@ -38,4 +38,4 @@ I want to see the history (operation, date, amount, balance) of my operations
 - mvn clean install
 -  or just running tests : mvn test
 
-<img width="1039" alt="capture-2" src="https://user-images.githubusercontent.com/4732531/198910093-032c44c8-9be8-4d5e-bdf3-a2517c42e9a1.png">
+![img.png](img.png)
