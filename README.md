@@ -1,6 +1,6 @@
 # Bank-account-kata
 
-The aim of this project is to implement the bank kata without using any framework (like spring / sprinboot…). 
+The aim of this project is to implement the bank kata without using any framework or database. 
 
 ## Requirements
 
